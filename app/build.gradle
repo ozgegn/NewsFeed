@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion deps.buildversions.compile_sdk_version
+    defaultConfig {
+        applicationId "com.comenginar.newsfeed"
+        minSdkVersion deps.buildversions.min_sdk_version
+        targetSdkVersion deps.buildversions.target_sdk_version
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://newsapi.org\"")
+            buildConfigField("String", "API_KEY", "API_KEY")
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField("String", "BASE_URL", "\"https://newsapi.org\"")
+            buildConfigField("String", "API_KEY", "API_KEY")
+
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.buildversions.android_kotlin
+
+    implementation deps.supports.app_combat
+    implementation deps.supports.constraint_layout
+    implementation deps.supports.recyclerview
+    implementation deps.supports.recyclerview_selection
+    implementation deps.supports.navigation_fragment
+    implementation deps.supports.navigation_ui_ktx
+    implementation deps.supports.legacy
+    implementation deps.supports.paging
+
+
+    implementation deps.koin.koin_core
+    implementation deps.koin.koin_android
+    implementation deps.koin.koin_viewmodel
+
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.moshi
+    implementation deps.retrofit.moshi_converter
+    kapt deps.retrofit.moshi_codegen
+    implementation deps.retrofit.moshi_adapter
+
+    implementation deps.components.glide
+    kapt deps.components.glide_compiler
+
+    implementation deps.kotlin.coroutine
+    implementation deps.kotlin.coroutine_android
+
+    testImplementation deps.testtools.junit
+    androidTestImplementation deps.testtools.test_runner
+    androidTestImplementation deps.testtools.espresso
+}

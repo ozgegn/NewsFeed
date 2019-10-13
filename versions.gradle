@@ -1,0 +1,87 @@
+ext.deps = [:]
+
+def versions = [:]
+versions.kotlin = '1.3.50'
+versions.gradle = '3.4.1'
+versions.build_tool = '28.0.0'
+versions.junit = '4.12'
+versions.test_runner = '1.0.2'
+versions.espresso = '3.0.2'
+versions.retrofit = '2.6.1'
+versions.moshi_converter = '2.6.1'
+versions.appcompat = '1.1.0'
+versions.constraint_layout = '1.1.3'
+versions.recyclerview = '1.0.0'
+versions.navigation_component = '2.1.0'
+versions.koin = '2.0.1'
+versions.moshi = '1.8.0'
+versions.glide = '4.10.0'
+versions.legacy = '1.0.0'
+versions.paging = '2.1.0'
+versions.coroutine = '1.3.2'
+
+ext.versions = versions
+
+def buildversions = [:]
+buildversions.android_gradle = "com.android.tools.build:gradle:$versions.gradle"
+buildversions.kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+buildversions.android_kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+buildversions.compile_sdk_version = 28
+buildversions.min_sdk_version = 22
+buildversions.target_sdk_version = 28
+
+deps.buildversions = buildversions
+
+def kotlin = [:]
+kotlin.coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutine"
+kotlin.coroutine_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutine"
+
+deps.kotlin = kotlin
+
+//Support Libraries
+def supports = [:]
+supports.app_combat = "androidx.appcompat:appcompat:$versions.appcompat"
+supports.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+supports.recyclerview = "androidx.recyclerview:recyclerview:$versions.recyclerview"
+supports.recyclerview_selection = "androidx.recyclerview:recyclerview-selection:$versions.recyclerview"
+supports.navigation_fragment = "androidx.navigation:navigation-fragment-ktx:$versions.navigation_component"
+supports.navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:$versions.navigation_component"
+supports.legacy = "androidx.legacy:legacy-support-v4:$versions.legacy"
+supports.paging = "androidx.paging:paging-runtime:$versions.paging"
+
+deps.supports = supports
+
+//Test Tools
+def testtools = [:]
+testtools.junit = "junit:junit:$versions.junit"
+testtools.test_runner = "com.android.support.test:runner:$versions.test_runner"
+testtools.espresso = "com.android.support.test.espresso:espresso-core:$versions.espresso"
+
+deps.testtools = testtools
+
+//Retrofit
+def retrofit = [:]
+retrofit.retrofit = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.moshi_converter = "com.squareup.retrofit2:converter-moshi:$versions.moshi_converter"
+retrofit.moshi = "com.squareup.moshi:moshi:$versions.moshi"
+retrofit.moshi_codegen = "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshi"
+retrofit.moshi_adapter = "com.squareup.moshi:moshi-adapters:$versions.moshi"
+
+deps.retrofit = retrofit
+
+//Koin
+def koin = [:]
+koin.koin_core = "org.koin:koin-core:$versions.koin"
+koin.koin_android = "org.koin:koin-android:$versions.koin"
+koin.koin_viewmodel = "org.koin:koin-androidx-viewmodel:$versions.koin"
+
+deps.koin = koin
+
+//Components
+def components = [:]
+components.glide = "com.github.bumptech.glide:glide:$versions.glide"
+components.glide_compiler = "com.github.bumptech.glide:compiler:$versions.glide"
+
+deps.components = components
+
+ext.deps = deps
