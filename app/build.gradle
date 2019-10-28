@@ -59,6 +59,7 @@ dependencies {
     implementation deps.retrofit.moshi_converter
     kapt deps.retrofit.moshi_codegen
     implementation deps.retrofit.moshi_adapter
+    implementation deps.retrofit.retrofit_coroutine_adapter
 
     implementation deps.components.glide
     kapt deps.components.glide_compiler
