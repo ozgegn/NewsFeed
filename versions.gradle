@@ -3,7 +3,7 @@ ext.deps = [:]
 def versions = [:]
 versions.kotlin = '1.3.50'
 versions.gradle = '3.4.1'
-versions.build_tool = '28.0.0'
+versions.build_tool = '28.0.3'
 versions.junit = '4.12'
 versions.test_runner = '1.0.2'
 versions.espresso = '3.0.2'
@@ -12,7 +12,7 @@ versions.moshi_converter = '2.6.1'
 versions.appcompat = '1.1.0'
 versions.constraint_layout = '1.1.3'
 versions.recyclerview = '1.0.0'
-versions.navigation_component = '2.1.0'
+versions.navigation = '2.2.0-alpha01'
 versions.koin = '2.0.1'
 versions.moshi = '1.8.0'
 versions.glide = '4.10.0'
@@ -21,6 +21,9 @@ versions.paging = '2.1.0'
 versions.coroutine = '1.3.2'
 versions.ktx_viewmodel_lifecycle = '2.1.0'
 versions.retrofit_coroutine_adapter = '0.9.2'
+versions.fragment = '1.2.0-alpha02'
+versions.support = '1.0.0'
+versions.core_ktx = '1.0.0'
 
 ext.versions = versions
 
@@ -46,10 +49,12 @@ supports.app_combat = "androidx.appcompat:appcompat:$versions.appcompat"
 supports.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
 supports.recyclerview = "androidx.recyclerview:recyclerview:$versions.recyclerview"
 supports.recyclerview_selection = "androidx.recyclerview:recyclerview-selection:$versions.recyclerview"
-supports.navigation_fragment = "androidx.navigation:navigation-fragment-ktx:$versions.navigation_component"
-supports.navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:$versions.navigation_component"
 supports.legacy = "androidx.legacy:legacy-support-v4:$versions.legacy"
 supports.paging = "androidx.paging:paging-runtime:$versions.paging"
+supports.fragment_runtime = "androidx.fragment:fragment:$versions.fragment"
+supports.fragment_runtime_ktx = "androidx.fragment:fragment-ktx:$versions.fragment"
+supports.design = "com.google.android.material:material:$versions.support"
+supports.core_ktx = "androidx.core:core-ktx:$versions.core_ktx"
 
 deps.supports = supports
 
@@ -92,5 +97,17 @@ def lifecycle = [:]
 lifecycle.ktx_viewmodel_lifecycle = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.ktx_viewmodel_lifecycle"
 
 deps.lifecycle = lifecycle
+
+//Navigation
+def navigation = [:]
+navigation.runtime = "androidx.navigation:navigation-runtime:$versions.navigation"
+navigation.runtime_ktx = "androidx.navigation:navigation-runtime-ktx:$versions.navigation"
+navigation.fragment = "androidx.navigation:navigation-fragment:$versions.navigation"
+navigation.fragment_ktx = "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+navigation.ui = "androidx.navigation:navigation-ui:$versions.navigation"
+navigation.ui_ktx = "androidx.navigation:navigation-ui-ktx:$versions.navigation"
+navigation.safe_args_plugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
+
+deps.navigation = navigation
 
 ext.deps = deps

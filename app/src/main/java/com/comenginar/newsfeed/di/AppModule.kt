@@ -2,7 +2,9 @@ package com.comenginar.newsfeed.di
 
 import com.comenginar.newsfeed.BuildConfig
 import com.comenginar.newsfeed.api.RestAPI
+import com.comenginar.newsfeed.data.AllNewsRepository
 import com.comenginar.newsfeed.data.NewsFeedRepository
+import com.comenginar.newsfeed.ui.allnews.AllNewsViewModel
 import com.comenginar.newsfeed.ui.newsfeed.NewsFeedViewModel
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
@@ -26,6 +28,9 @@ val viewModelModule = module {
     viewModel {
         NewsFeedViewModel(get())
     }
+    viewModel {
+        AllNewsViewModel(get())
+    }
 
 }
 
@@ -33,6 +38,9 @@ val repositoryModule = module {
 
     single {
         NewsFeedRepository(get())
+    }
+    single {
+        AllNewsRepository(get())
     }
 
 }

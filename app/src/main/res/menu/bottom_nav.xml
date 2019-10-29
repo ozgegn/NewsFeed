@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+TypeCastException in NavigationExtensions.kt
+
+ the navigation graphs id in the xml should match the id of the menu items in the bottom navigation menu xml.
+
+ https://github.com/android/architecture-components-samples/issues/693
+
+  -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/menu_top_topics"
+            android:contentDescription="@string/cd_top_topic"
+            android:icon="@drawable/ic_whatshot_green_24dp"
+            android:title="@string/title_top_topic" />
+
+    <item
+            android:id="@+id/menu_all_news"
+            android:contentDescription="@string/cd_all_news"
+            android:icon="@drawable/ic_list_green_24dp"
+            android:title="@string/title_all_news" />
+
+    <item
+            android:id="@+id/menu_profile"
+            android:contentDescription="@string/cd_profile"
+            android:icon="@drawable/ic_people_green_24dp"
+            android:title="@string/title_profile" />
+
+</menu>

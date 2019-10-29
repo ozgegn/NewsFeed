@@ -1,10 +1,8 @@
 package com.comenginar.newsfeed.data
 
-import androidx.lifecycle.MutableLiveData
 import com.comenginar.newsfeed.api.RestAPI
 import com.comenginar.newsfeed.base.BaseRepository
 import com.comenginar.newsfeed.model.Article
-import com.comenginar.newsfeed.model.NewsResponse
 
 class NewsFeedRepository(private val api: RestAPI) : BaseRepository() {
 

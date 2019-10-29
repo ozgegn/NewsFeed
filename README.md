@@ -2,11 +2,16 @@
 
 #### A Simple Project For MVVM
 
+Learning and trying Android Architecture Components with 
+
 - Koin
 - Moshi
 - Glide
-- Navigation
-- Coroutine (In-Progress)
+- Navigation Component
+- Coroutine
 - Paging (In-Progress)
 - News Api : [https://newsapi.org/]
+- Material Design Components
+
+
 
