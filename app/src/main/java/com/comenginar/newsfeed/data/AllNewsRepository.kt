@@ -1,24 +1,34 @@
 package com.comenginar.newsfeed.data
 
+import androidx.lifecycle.LiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.comenginar.newsfeed.api.RestAPI
 import com.comenginar.newsfeed.base.BaseRepository
+import com.comenginar.newsfeed.data.remote.AllNewsDataSourceFactory
+import com.comenginar.newsfeed.data.remote.AllNewsRemoteDataSource
 import com.comenginar.newsfeed.model.Article
+import kotlinx.coroutines.CoroutineScope
 
-class AllNewsRepository(private val api: RestAPI) : BaseRepository() {
+class AllNewsRepository(private val allNewsRemoteDataSource: AllNewsRemoteDataSource) : BaseRepository() {
 
-    suspend fun getAllNews(
-        category: String,
+    fun observeRemotePagedSets(
+        scope: CoroutineScope,
         apiKey: String,
-        pageSize: String,
-        page: String
-    ): MutableList<Article>? {
-
-        val allNewsResponse = safeApiCall(
-            call = { api.getAllNews(category, apiKey, pageSize, page).await() },
-            errorMessage = "Error Fetching All News"
+        query: String
+    ): LiveData<PagedList<Article>> {
+        val dataSourceFactory = AllNewsDataSourceFactory(
+            repository = this,
+            scope = scope,
+            apiKey = apiKey,
+            query = query,
+            allNewsRemoteDataSource = allNewsRemoteDataSource
         )
 
-        return allNewsResponse?.articles?.toMutableList()
+        return LivePagedListBuilder(
+            dataSourceFactory,
+            AllNewsDataSourceFactory.pagedListConfig()
+        ).build()
 
     }
 

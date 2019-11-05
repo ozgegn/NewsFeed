@@ -11,14 +11,13 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.comenginar.newsfeed.R
 import com.comenginar.newsfeed.databinding.FragmentAllNewsBinding
-import com.comenginar.newsfeed.model.Article
-import com.comenginar.newsfeed.ui.newsfeed.NewsFeedListAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AllNewsFragment : Fragment() {
 
     private val viewModel by viewModel<AllNewsViewModel>()
     private lateinit var binding: FragmentAllNewsBinding
+    private val adapter: AllNewsPagedListAdapter by lazy { AllNewsPagedListAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,30 +25,31 @@ class AllNewsFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_all_news, container, false)
+
+        val layoutManager = LinearLayoutManager(context)
+        binding.listAllNews.layoutManager = layoutManager
+        binding.listAllNews.adapter = adapter
+
+        subscribeUi(adapter)
+
         return binding.root
+    }
+
+    private fun subscribeUi(adapter: AllNewsPagedListAdapter) {
+        viewModel.data.observe(this, Observer {
+            adapter.submitList(it)
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        viewModel.data.observe(this, Observer {
-            bindList(it)
-        })
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        val layoutManager = LinearLayoutManager(context)
-        binding.listAllNews.layoutManager = layoutManager
     }
 
-    private fun bindList(news: List<Article>) {
-
-        val adapter = NewsFeedListAdapter(news)
-        binding.listAllNews.adapter = adapter
-
+    override fun onResume() {
+        super.onResume()
     }
-
 }

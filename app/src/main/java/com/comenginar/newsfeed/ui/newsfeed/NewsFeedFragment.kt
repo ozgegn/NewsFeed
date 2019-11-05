@@ -35,15 +35,6 @@ class NewsFeedFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        newsFeedViewModel.data.observe(this, Observer {
-            //Populate the UI
-           bindList(newsFeedViewModel.data.value)
-        })
-
-        newsFeedViewModel.loadingState.observe(this, Observer {
-            //Observe the loading state
-        })
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -51,6 +42,15 @@ class NewsFeedFragment : Fragment() {
 
         layoutManager = LinearLayoutManager(context)
         binding.listNews.layoutManager = layoutManager
+
+        newsFeedViewModel.data.observe(this, Observer {
+            //Populate the UI
+            bindList(newsFeedViewModel.data.value)
+        })
+
+        newsFeedViewModel.loadingState.observe(this, Observer {
+            //Observe the loading state
+        })
     }
 
     private fun bindList(articles : List<Article>?){

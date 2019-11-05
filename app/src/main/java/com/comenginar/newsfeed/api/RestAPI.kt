@@ -13,9 +13,9 @@ interface RestAPI {
 
     @GET("/v2/everything")
     fun getAllNews(
-        @Query("q") category: String, @Query("apiKey") apiKey: String, @Query("pageSize") pageSize: String, @Query(
+        @Query("q") category: String, @Query("apiKey") apiKey: String, @Query("pageSize") perPage: Int, @Query(
             "page"
-        ) page: String
+        ) page: Int
     ): Deferred<Response<NewsResponse>>
 
 }

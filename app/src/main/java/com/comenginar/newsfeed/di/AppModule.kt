@@ -4,6 +4,7 @@ import com.comenginar.newsfeed.BuildConfig
 import com.comenginar.newsfeed.api.RestAPI
 import com.comenginar.newsfeed.data.AllNewsRepository
 import com.comenginar.newsfeed.data.NewsFeedRepository
+import com.comenginar.newsfeed.data.remote.AllNewsRemoteDataSource
 import com.comenginar.newsfeed.ui.allnews.AllNewsViewModel
 import com.comenginar.newsfeed.ui.newsfeed.NewsFeedViewModel
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -41,6 +42,10 @@ val repositoryModule = module {
     }
     single {
         AllNewsRepository(get())
+    }
+
+    single {
+        AllNewsRemoteDataSource(get())
     }
 
 }
