@@ -9,7 +9,7 @@ Learning and trying Android Architecture Components with
 - Glide
 - Navigation Component
 - Coroutine
-- Paging (In-Progress)
+- Paging
 - News Api : [https://newsapi.org/]
 - Material Design Components
 
