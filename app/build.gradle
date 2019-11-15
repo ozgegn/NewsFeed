@@ -19,7 +19,7 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL", "\"https://newsapi.org\"")
-            buildConfigField("String", "API_KEY", "API_KEY")
+            buildConfigField("String", "API_KEY", "\"73b5606fceb74aa591508bcf51b533e0\"")
         }
 
         release {
@@ -27,7 +27,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             buildConfigField("String", "BASE_URL", "\"https://newsapi.org\"")
-            buildConfigField("String", "API_KEY", "API_KEY")
+            buildConfigField("String", "API_KEY", "\"73b5606fceb74aa591508bcf51b533e0\"")
 
         }
     }

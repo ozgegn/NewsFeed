@@ -12,15 +12,12 @@ import com.comenginar.newsfeed.databinding.AdapterNewsfeedListBinding
 import com.comenginar.newsfeed.model.Article
 import kotlinx.android.synthetic.main.adapter_newsfeed_list.view.*
 
-class NewsFeedListAdapter(private val articles: List<Article>) :
+class NewsFeedListAdapter(var articles: List<Article>) :
     RecyclerView.Adapter<NewsFeedListAdapter.NewsFeedListViewHolder>() {
 
     private lateinit var binding: AdapterNewsfeedListBinding
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): NewsFeedListAdapter.NewsFeedListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsFeedListViewHolder {
         binding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             R.layout.adapter_newsfeed_list,
@@ -32,12 +29,14 @@ class NewsFeedListAdapter(private val articles: List<Article>) :
 
     override fun getItemCount() = articles.size
 
-    override fun onBindViewHolder(
-        holder: NewsFeedListAdapter.NewsFeedListViewHolder,
-        position: Int
-    ) {
+    override fun onBindViewHolder(holder: NewsFeedListViewHolder, position: Int) {
         val article = articles[position]
         holder.bindArticle(article)
+    }
+
+    fun notifyDataList(articles: List<Article>){
+        this.articles = articles
+        notifyDataSetChanged()
     }
 
     class NewsFeedListViewHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
@@ -59,7 +58,6 @@ class NewsFeedListAdapter(private val articles: List<Article>) :
             view.text_news_title.text = article.title
             view.text_news_content.text = article.content
         }
-
     }
 
 }
