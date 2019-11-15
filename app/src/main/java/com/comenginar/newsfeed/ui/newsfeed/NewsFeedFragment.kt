@@ -1,11 +1,9 @@
 package com.comenginar.newsfeed.ui.newsfeed
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,20 +19,14 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class NewsFeedFragment : Fragment() {
 
     private val newsFeedViewModel by viewModel<NewsFeedViewModel>()
+
     private lateinit var binding: FragmentNewsFeedBinding
     private lateinit var layoutManager: LinearLayoutManager
-    private lateinit var newsFeedListAdapter: NewsFeedListAdapter
+    private val newsFeedListAdapter by lazy { NewsFeedListAdapter(emptyList())  }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_news_feed, container, false)
         return binding.root
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -44,8 +36,7 @@ class NewsFeedFragment : Fragment() {
         binding.listNews.layoutManager = layoutManager
 
         newsFeedViewModel.data.observe(this, Observer {
-            //Populate the UI
-            bindList(newsFeedViewModel.data.value)
+            checkListThenBind(newsFeedViewModel.data.value)
         })
 
         newsFeedViewModel.loadingState.observe(this, Observer {
@@ -53,9 +44,11 @@ class NewsFeedFragment : Fragment() {
         })
     }
 
-    private fun bindList(articles : List<Article>?){
-        newsFeedListAdapter = NewsFeedListAdapter(articles!!)
-        binding.listNews.adapter = newsFeedListAdapter
+    private fun checkListThenBind(articles: MutableList<Article>?) {
+        // Live Data not stable variable , to do this, either use SingleLiveEvent or use the memory correctly by defining the variables lazy.
+        if (!articles.isNullOrEmpty()){
+            newsFeedListAdapter.notifyDataList(articles)
+            binding.listNews.adapter = newsFeedListAdapter
+        }
     }
-
 }
